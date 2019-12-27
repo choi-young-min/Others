@@ -1,0 +1,70 @@
+time.jsp
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("E MMM DD HH:mm:ss");
+		out.println(format.format(date));
+	%>
+</body>
+</html>
+
+
+ajax.jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+?œê°„ <input type="button" id="execute" value="execute">
+<span id="time"></span>
+	
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	$("#execute").click(function(){
+		$.ajax({
+			url:'./time.jsp',
+			type:'post',
+			data:$('form').serialize(),
+			success:function(data){
+				$('#time').append(data+"<br>");
+			}
+		});
+	});
+</script>
+</body>
+</html>
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String user_id = request.getParameter("user_id");
+	String user_pw = request.getParameter("user_pw");
+	if(user_id.equals("test")&&user_pw.equals("123")){
+		out.print("success");
+	}
+%>
+
+
+
+
+
+
+
+
